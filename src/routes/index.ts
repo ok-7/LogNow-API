@@ -12,7 +12,8 @@ export const router = new class Router {
     }
 
     public async loadRoutes() {
-        this.router.get("/user", middleware.isAuthenticated, userController.getUsers);
+        this.router.get("/users", middleware.isAuthenticated, userController.getUsers);
+        this.router.get("/users/:id", middleware.isAuthenticated, userController.getUsers);
     }
 
     public getRouter() {
