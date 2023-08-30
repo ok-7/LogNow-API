@@ -1,5 +1,8 @@
 import * as mongoDB from "mongodb";
-import { UserCollection } from "./collections/userCollection";
+import { UserCollection } from "./collections/user.collection";
+import { BusinessCollection } from "./collections/business.collection";
+import { RoleCollection } from "./collections/role.collection";
+import { ModuleCollection } from "./collections/module.collection";
 
 export default new class Database {
     
@@ -12,6 +15,9 @@ export default new class Database {
     }
     
     public userCollection: mongoDB.Collection<UserCollection>;
+    public businessCollection: mongoDB.Collection<BusinessCollection>;
+    public roleCollection: mongoDB.Collection<RoleCollection>;
+    public moduleCollection: mongoDB.Collection<ModuleCollection>;
 
     public async establishDatabaseConnection() {
         if (this.client) return console.log("Database connection already established.");
@@ -25,9 +31,12 @@ export default new class Database {
             process.exit(1);
         });
 
-        this.database = this.client.db("amazon");
+        this.database = this.client.db("lognow");
 
         this.userCollection = this.database.collection("users");
+        this.businessCollection = this.database.collection("businesses");
+        this.roleCollection = this.database.collection("roles");
+        this.moduleCollection = this.database.collection("modules");
 
         console.log(`Connection to the database ${this.database.namespace} was successfully established.`);
     }
