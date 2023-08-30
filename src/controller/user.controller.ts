@@ -14,15 +14,4 @@ export const userController = new class UserController {
             return res.sendStatus(400);
         }
     }
-
-    public async getUserByTelegramId(req: express.Request, res: express.Response) {
-        try{
-            const { telegramId } = req.params;
-            const user = await userService.getUserByTelegramId(telegramId);
-            return res.status(200).json(user);
-        }catch(err){
-            console.log(err);
-            return res.sendStatus(400);
-        }
-    }
 }

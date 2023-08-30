@@ -9,8 +9,8 @@ import { router } from "./routes";
 
 new class API {
 
-    private app;
-    private server;
+    private app: express.Application;
+    private server: http.Server;
 
     constructor() {
         this.start();
@@ -29,9 +29,7 @@ new class API {
         this.app.use(bodyParser.json());
 
         this.server = http.createServer(this.app);
-        this.server.listen(8080, () => {
-            console.log(`Server running on http://localhost:8080/`);
-        });
+        this.server.listen(8080, () => console.log(`Server running on http://localhost:8080/`));
 
         this.app.use("/", router.getRouter());
     }

@@ -1,11 +1,10 @@
 {
-  "name": "amazonspy-api",
+  "name": "lognow-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "run": "tsc",
-    "watcher": "tsc -w"
+    "run": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "Oliver Kretzer",
@@ -23,6 +22,7 @@
     "mongodb": "^5.8.1",
     "nodemon": "^3.0.1",
     "telegraf": "^4.12.2",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "devDependencies": {

@@ -1,5 +1,4 @@
 import * as mongoDB from "mongodb";
-import { SellerCollection } from "./collections/sellerCollection";
 import { UserCollection } from "./collections/userCollection";
 
 export default new class Database {
@@ -12,7 +11,6 @@ export default new class Database {
         this.database = undefined;
     }
     
-    public sellerCollection: mongoDB.Collection<SellerCollection>;
     public userCollection: mongoDB.Collection<UserCollection>;
 
     public async establishDatabaseConnection() {
@@ -29,7 +27,6 @@ export default new class Database {
 
         this.database = this.client.db("amazon");
 
-        this.sellerCollection = this.database.collection("sellers");
         this.userCollection = this.database.collection("users");
 
         console.log(`Connection to the database ${this.database.namespace} was successfully established.`);
