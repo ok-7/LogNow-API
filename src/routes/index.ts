@@ -4,6 +4,7 @@ import { middleware } from "../middleware";
 import { businessController } from "../controller/business.controller";
 import { roleController } from "../controller/role.controller";
 import { moduleController } from "../controller/module.controller";
+import { authController } from "../controller/auth.controller";
 
 export const router = new class Router {
 
@@ -14,13 +15,38 @@ export const router = new class Router {
         this.loadRoutes();
     }
 
-    public async loadRoutes() {
-        this.router.get("/users", middleware.isAuthenticated, userController.getUsers);
-        this.router.get("/businesses", middleware.isAuthenticated, businessController.getBusinesses);
-        this.router.get("/roles", middleware.isAuthenticated, roleController.getRoles);
-        this.router.get("/modules", middleware.isAuthenticated, moduleController.getModules);
+    private async loadRoutes() {
+        this.loadAuthRoutes();
+        this.loadUserRoutes();
+        this.loadBusinessRoutes();
+        this.loadRoleRoutes();
+        this.loadModuleRoutes();
+    }
 
-        // this.router.get("/users/:id", middleware.isAuthenticated, userController.getUsers);
+    private async loadAuthRoutes() {
+        // POST
+        this.router.post("/auth", authController.authenticate);
+    }
+
+    private async loadUserRoutes() {
+        // GETTERS
+        this.router.get("/users", middleware.authenticateToken, userController.getUsers);
+        this.router.get("/users/:id", middleware.authenticateToken, userController.getUser);
+    }
+
+    private async loadBusinessRoutes() {
+        // GETTERS
+        this.router.get("/business", middleware.authenticateToken, businessController.getBusinesses);
+    }
+
+    private async loadRoleRoutes() {
+        // GETTERS
+        this.router.get("/roles", middleware.authenticateToken, roleController.getRoles);
+    }
+
+    private async loadModuleRoutes() {
+        // GETTERS
+        this.router.get("/modules", middleware.authenticateToken, moduleController.getModules);
     }
 
     public getRouter() {
