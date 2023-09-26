@@ -31,22 +31,37 @@ export const router = new class Router {
     private async loadUserRoutes() {
         // GETTERS
         this.router.get("/users", middleware.authenticateToken, userController.getUsers);
-        this.router.get("/users/:id", middleware.authenticateToken, userController.getUser);
+        this.router.get("/users/:id", middleware.authenticateToken, userController.getUserById);
+        
+        // POST
+        this.router.post("/user", middleware.authenticateToken, userController.createUser);
+
+        // UPDATE
+        this.router.put("/user/username/:id", middleware.authenticateToken, userController.updateUsername);
+        this.router.put("/user/password/:id", middleware.authenticateToken, userController.updatePassword);
+        this.router.put("/user/addrole/:id", middleware.authenticateToken, userController.addRole);
+        this.router.put("/user/removerole/:id", middleware.authenticateToken, userController.removeRole);
+
+        // DELETE
+        this.router.delete("/user/:id", middleware.authenticateToken, userController.deleteUser);
     }
 
     private async loadBusinessRoutes() {
         // GETTERS
         this.router.get("/business", middleware.authenticateToken, businessController.getBusinesses);
+        this.router.get("/business/:id", middleware.authenticateToken, businessController.getBusinessById);
     }
 
     private async loadRoleRoutes() {
         // GETTERS
         this.router.get("/roles", middleware.authenticateToken, roleController.getRoles);
+        this.router.get("/role/:id", middleware.authenticateToken, roleController.getRoleById);
     }
 
     private async loadModuleRoutes() {
         // GETTERS
         this.router.get("/modules", middleware.authenticateToken, moduleController.getModules);
+        this.router.get("/module/:id", middleware.authenticateToken, moduleController.getModuleById);
     }
 
     public getRouter() {

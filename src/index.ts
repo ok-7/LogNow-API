@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 import { router } from "./routes";
-import dotenv from "dotenv";
 import dotenvSafe from "dotenv-safe";
 
 new class API {
