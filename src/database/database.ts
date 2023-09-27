@@ -3,6 +3,7 @@ import { UserCollection } from "./collections/user.collection";
 import { BusinessCollection } from "./collections/business.collection";
 import { RoleCollection } from "./collections/role.collection";
 import { ModuleCollection } from "./collections/module.collection";
+import { ReportBookLogCollection } from "./collections/reportbook.log.collection";
 
 export default new class Database {
     
@@ -18,6 +19,7 @@ export default new class Database {
     public businessCollection: mongoDB.Collection<BusinessCollection>;
     public roleCollection: mongoDB.Collection<RoleCollection>;
     public moduleCollection: mongoDB.Collection<ModuleCollection>;
+    public reportBookLogCollection: mongoDB.Collection<ReportBookLogCollection>;
 
     public async establishDatabaseConnection() {
         if (this.client) return console.log("Database connection already established.");
@@ -37,6 +39,7 @@ export default new class Database {
         this.businessCollection = this.database.collection("businesses");
         this.roleCollection = this.database.collection("roles");
         this.moduleCollection = this.database.collection("modules");
+        this.reportBookLogCollection = this.database.collection("reportbooklogs");
 
         console.log(`Connection to the database ${this.database.namespace} was successfully established.`);
     }
