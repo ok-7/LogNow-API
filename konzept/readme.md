@@ -1,0 +1,1 @@
+Link zu Figma: https://www.figma.com/file/15zEevSFykd2AhTV3kIDNm/LogNow?type=design&node-id=1-4&mode=design
