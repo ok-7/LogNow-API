@@ -6,7 +6,7 @@ import PySimpleGUI as sg
 import os
 import openai
 import sys
-openai.api_key = "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"
+openai.api_key = ""
 site = """
 <!DOCTYPE html>
 <html lang="en">
